@@ -1,12 +1,35 @@
 baseurl = "/"
-languageCode = "en-us"
-languageLang = "en"
-title = "Kaldi"
+
+# Configurazione della lingua
+
+defaultContentLanguage = 'it'
+defaultContentLanguageInSubdir = false
+[languages]
+  [languages.it]
+    contentDir = 'content'
+    disabled = false
+    languageCode = 'it-IT'
+    languageDirection = 'ltr'
+    languageName = 'Italiano'
+    title = 'LEEPPO'
+    weight = 1
+    [languages.it.params]
+      subtitle = 'Scivola nel divertimento'
+  [languages.en]
+    contentDir = 'content/en'
+    disabled = false
+    languageCode = 'en-US'
+    languageDirection = 'ltr'
+    languageName = 'English'
+    title = 'LEEPPO'
+    weight = 2
+    [languages.en.params]
+      subtitle = 'The slippery and the wet'
 
 # RSS, categories and tags disabled for an easy start
 # See configuration options for more details: 
 # https://gohugo.io/getting-started/configuration/#toml-configuration
-disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
+disableKinds = ["RSS"]
 
 [params]
 images = ["img/og-image.jpg"]

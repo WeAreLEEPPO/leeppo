@@ -1,6 +1,8 @@
 .strike       { text-decoration: line-through; }
 .underline    { text-decoration: underline; }
 .no-underline { text-decoration: none; }
+.cool-shadow { text-shadow: 5px 5px #077008; }
+.cool-shadow-small { text-shadow: 2px 2px #077008; }
 
 
 @media (--breakpoint-not-small) {
