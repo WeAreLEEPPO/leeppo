@@ -32,4 +32,4 @@ defaultContentLanguageInSubdir = false
 disableKinds = ["RSS"]
 
 [params]
-images = ["img/og-image.jpg"]
+images = ["img/og-image.png"]
