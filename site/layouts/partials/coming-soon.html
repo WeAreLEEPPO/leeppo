@@ -1,0 +1,12 @@
+<div class="vh-100 dt w-100 bg-white">
+  <div class="dtc v-mid tc white ph3 ph4-l">
+    <video class="mw-100 w-90 w-40-l w-60-m w-80-ns" autoplay loop>
+      <source src='{{.videoUrl}}' type="video/mp4" />
+    </video>
+    {{ if .subtitle }}
+      <p class="f3 f3-ns f3-m f4-l fw1 tc center raise black">
+        {{.subtitle}}
+      </p>
+    {{ end }}
+  </div>
+</div>

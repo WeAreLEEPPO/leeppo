@@ -1,5 +1,5 @@
 ---
 title: COMING SOON
-subtitle: 'The slippery and the wet'
-image: /img/coming-soon.jpg
+subtitle: coming soon
+video: /video/coming-soon.mp4
 ---
