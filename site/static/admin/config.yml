@@ -2,83 +2,109 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "site/static/img" # Folder where user uploaded files should go
-public_folder: "img"
+media_folder: "site/static/media" # Folder where user uploaded files should go
+public_folder: "media"
+
+i18n:
+  # Required and can be one of multiple_folders, multiple_files or single_file
+  # multiple_folders - persists files in `<folder>/<locale>/<slug>.<extension>`
+  # multiple_files - persists files in `<folder>/<slug>.<locale>.<extension>`
+  # single_file - persists a single file in `<folder>/<slug>.<extension>`
+  structure: multiple_files
+
+  # Required - a list of locales to show in the editor UI
+  locales: [it, en]
+
+  # Optional, defaults to the first item in locales.
+  # The locale to be used for fields validation and as a baseline for the entry.
+  default_locale: it
 
 collections: # A list of collections the CMS should be able to edit
   - name: "post" # Used in routes, ie.: /admin/collections/:slug/edit
     label: "Post" # Used in the UI, ie.: "New Post"
     folder: "site/content/post" # The path to the folder where the documents are stored
     path: "{{slug}}/index" # Each document is inside a folder with the slug name.
+    i18n: true
     create: true # Allow users to create new documents in this collection
     fields: # The fields each document in this collection have
-      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Title", name: "title", widget: "string", i18n: true}
       - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Intro Blurb", name: "description", widget: "text"}
+      - {label: "Intro Blurb", name: "description", widget: "text", i18n: true}
       - {label: "Image", name: "image", widget: "image", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Body", name: "body", widget: "markdown", i18n: true}
   - name: "pages"
     label: "Pages"
+    i18n:
+      structure: single_file
+      locales: [it, en]
     files:
       - file: "site/content/_index.md"
         label: "Home Page"
         name: "home"
+        i18n: true
         fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Subtitle, name: subtitle, widget: string}
+          - {label: Title, name: title, widget: string, i18n: true}
+          - {label: Subtitle, name: subtitle, widget: string, i18n: true}
           - {label: Image, name: image, widget: image}
           - {label: "Blurb", name: blurb, widget: object, fields: [
-              {label: "Heading", name: "heading", widget: string},
-              {label: "Text", name: "text", widget: "text"}]}
+              {label: "Heading", name: "heading", widget: string, i18n: true},
+              {label: "Text", name: "text", widget: "text", i18n: true}]}
           - {label: "Intro", name: intro, widget: object, fields: [
-              {label: "Heading", name: "heading", widget: string},
-              {label: "Text", name: "text", widget: "text"}]}
+              {label: "Heading", name: "heading", widget: string, i18n: true},
+              {label: "Text", name: "text", widget: "text", i18n: true}]}
           - {label: "Products", name: products, widget: list, fields: [
-              {label: "Image", name: "image", widget: "image"},
-              {label: "Text", name: "text", widget: "text"}]}
+              {label: "Image", name: "image", widget: "image", i18n: true},
+              {label: "Text", name: "text", widget: "text", i18n: true}]}
           - {label: "Values", name: "values", widget: "object", fields: [
-              {label: "Heading", name: "heading", widget: string},
-              {label: "Text", name: "text", widget: "text"}]}
+              {label: "Heading", name: "heading", widget: string, i18n: true},
+              {label: "Text", name: "text", widget: "text", i18n: true}]}
       - file: "site/content/contact/_index.md"
         label: "Contact Page"
         name: "contact"
+        i18n: true
         fields:
-          - {label: Title, name: title, widget: string}
+          - {label: Title, name: title, widget: string, i18n: true}
           - {label: Logo, name: logo, widget: image}
-          - {label: Body, name: body, widget: markdown}
+          - {label: Body, name: body, widget: markdown, i18n: true}
           - label: Contact Entries
             name: contact_entries
             widget: list
+            i18n: true
             fields:
               - label: Heading
                 name: heading
                 widget: string
+                i18n: true
               - label: Text
                 name: text
                 widget: text
+                i18n: true
       - file: "site/content/products/_index.md"
         label: "Products Page"
         name: "products"
+        i18n: true
         fields:
-          - {label: Title, name: title, widget: string}
+          - {label: Title, name: title, widget: string, i18n: true}
           - {label: Image, name: image, widget: image}
-          - {label: Intro, name: intro, widget: object, fields: [{label: Heading, name: heading, widget: string}, {label: Description, name: description, widget: text}, {label: Blurbs, name: blurbs, widget: list, fields: [{label: Image, name: image, widget: image}, {label: Text, name: text, widget: text}]}]}
-          - {label: Main, name: main, widget: object, fields: [{label: Heading, name: heading, widget: string}, {label: Description, name: description, widget: text}, {label: Image1, name: image1, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string}]}, {label: Image2, name: image2, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string}]}, {label: Image3, name: image3, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string}]}]}
-          - {label: Testimonials, name: testimonials, widget: list, fields: [{label: Quote, name: quote, widget: string}, {label: Author, name: author, widget: string}]}
+          - {label: Intro, name: intro, widget: object, fields: [{label: Heading, name: heading, widget: string, i18n: true}, {label: Description, name: description, widget: text, i18n: true}, {label: Blurbs, name: blurbs, widget: list, fields: [{label: Image, name: image, widget: image}, {label: Text, name: text, widget: text, i18n: true}]}]}
+          - {label: Main, name: main, widget: object, fields: [{label: Heading, name: heading, widget: string, i18n: true}, {label: Description, name: description, widget: text, i18n: true}, {label: Image1, name: image1, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string, i18n: true}]}, {label: Image2, name: image2, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string, i18n: true}]}, {label: Image3, name: image3, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string, i18n: true}]}]}
+          - {label: Testimonials, name: testimonials, widget: list, fields: [{label: Quote, name: quote, widget: string, i18n: true}, {label: Author, name: author, widget: string, i18n: true}]}
           - {label: Full_image, name: full_image, widget: image}
-          - {label: Pricing, name: pricing, widget: object, fields: [{label: Heading, name: heading, widget: string}, {label: Description, name: description, widget: string}, {label: Plans, name: plans, widget: list, fields: [{label: Plan, name: plan, widget: string}, {label: Price, name: price, widget: string}, {label: Description, name: description, widget: string}, {label: Items, name: items, widget: list}]}]}
+          - {label: Pricing, name: pricing, widget: object, fields: [{label: Heading, name: heading, widget: string, i18n: true}, {label: Description, name: description, widget: string, i18n: true}, {label: Plans, name: plans, widget: list, fields: [{label: Plan, name: plan, widget: string, i18n: true}, {label: Price, name: price, widget: string, i18n: true}, {label: Description, name: description, widget: string, i18n: true}, {label: Items, name: items, widget: list}]}]}
       - file: "site/content/values/_index.md"
         label: "Values Page"
         name: "values"
+        i18n: true
         fields:
-          - {label: Title, name: title, widget: string}
+          - {label: Title, name: title, widget: string, i18n: true}
           - {label: Image, name: image, widget: image}
           - label: Values
             name: values
             widget: list
+            i18n: true
             fields:
-              - {label: Heading, name: heading, widget: string}
-              - {label: Text, name: text, widget: text}
+              - {label: Heading, name: heading, widget: string, i18n: true}
+              - {label: Text, name: text, widget: text, i18n: true}
               - {label: Image, name: imageUrl, widget: image}
   - name: "site_settings"
     label: "Site Settings"
