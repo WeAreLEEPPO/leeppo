@@ -6,7 +6,6 @@ defaultContentLanguage = 'it'
 defaultContentLanguageInSubdir = false
 [languages]
   [languages.it]
-    contentDir = 'content'
     disabled = false
     languageCode = 'it-IT'
     languageDirection = 'ltr'
@@ -16,7 +15,6 @@ defaultContentLanguageInSubdir = false
     [languages.it.params]
       subtitle = 'Scivola nel divertimento'
   [languages.en]
-    contentDir = 'content/en'
     disabled = false
     languageCode = 'en-US'
     languageDirection = 'ltr'
