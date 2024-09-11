@@ -1,13 +1,14 @@
 {{ define "main" }}
 
-{{ partial "jumbotron" (dict "imageUrl" .Params.image "title" .Title "subtitle" .Params.subtitle) }}
+<div class="flex justify-center items-center center">
+    <p>
+        <select class="post-filter">
+            <option value="/posts">Posts</option>
+            <option value="/fakeposts">Fake posts</option>
+        </select>
+    </p>
+</div>
 
-{{ partial "short-text" .Params.blurb}}
-
-{{ partial "2-up" .Params }}
-
-{{ partial "text-and-image" (dict "heading" .Params.values.heading "text" .Params.values.text "buttonText" "Read more" "buttonLink" "/values") }}
-
-{{ partial "blog" . }}
+{{ partial "masonry" . }}
 
 {{ end }}

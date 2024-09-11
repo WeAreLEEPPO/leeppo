@@ -1,0 +1,25 @@
+<div>
+	<div class="ph3 center" id="posts">
+		<!-- Infinite Scrolling: https://mikeroibu.com/post/hugo-infinite-scrolling/ -->
+		<div class="grid">
+		<div class="grid-sizer"></div>
+			<!--{{ $range := where .Site.RegularPages "Section" "posts" }}-->
+			{{ $range := .Pages.ByPublishDate.Reverse }}
+			{{ $paginator := .Paginate $range 8 }}
+			{{ $pageSize := $paginator.PageSize }}
+			{{ $totalPostsToShow := mul $paginator.PageNumber $pageSize }}
+			{{ range $index, $el := (first $totalPostsToShow $range) }}
+				<div class="grid-item ma0 pa0" id="{{ if eq $index (sub $totalPostsToShow $pageSize) }}latest{{ end }}" >
+					{{ .Render "li" }}
+				</div>
+			{{ end }}
+		</div>
+
+		{{ if and (gt $paginator.TotalPages 1) ($paginator.HasNext) }}
+		<div class="tc">
+			<a href="{{ $paginator.Next.URL }}#latest" class="btn raise load-more">Load More</a>
+		</div>
+		{{ end }}
+
+	</div>
+</div>

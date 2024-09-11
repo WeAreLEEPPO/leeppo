@@ -1,11 +1,13 @@
 <!doctype html>
-<html lang="{{ $.Site.Language.Lang }}">
+<html lang="{{ $.Site.Language.Lang }}" class="absolute--fill">
   {{ partial "head" . }}
-  <body class="sans-serif">
+  <body class="sans-serif absolute--fill flex flex-auto flex-column">
 
     {{ block "header" . }}{{ partial "nav" . }}{{end}}
 
+    <main class="pb4 pt5">
     {{ block "main" . }}{{ end }}
+    </main>
 
     {{ block "footer" . }}{{ partial "footer" . }}{{end}}
 
